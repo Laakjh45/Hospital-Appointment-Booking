@@ -1,0 +1,163 @@
+
+[
+  {
+    "id": 1,
+    "Query": "your name",
+    "Reply": "I am Zeka. An AI Chatbot."
+  },
+  {
+    "id": 2,
+    "Query": "hi",
+    "Reply": "Hi!"
+  },
+  {
+    "id": 3,
+    "Query": "who are you",
+    "Reply": "I am Zeka. An AI Chatbot."
+  },
+  {
+    "id": 4,
+    "Query": "your age",
+    "Reply": "I am an AI Chatbot and I have no age."
+  },
+  {
+    "id": 5,
+    "Query": "hello",
+    "Reply": "Hello!"
+  },
+  {
+    "id": 6,
+    "Query": "what can you do",
+    "Reply": "Book Appointments, Play  Music and open a website"
+  },
+  {
+    "id": 7,
+    "Query": "thank you",
+    "Reply": "My Pleasure."
+  },
+  {
+    "id": 8,
+    "Query": "color of sun",
+    "Reply": "Yellow, Orange and Red."
+  },
+  {
+    "id": 9,
+    "Query": "color of moon",
+    "Reply": "White."
+  },
+  {
+    "id": 10,
+    "Query": "who is zeka",
+    "Reply": "Zeka is an AI Chatbot."
+  },
+  {
+    "id": 11,
+    "Query": "full form of covid-19",
+    "Reply": "Corona Virus Disease 2019"
+  },
+  {
+    "id": 12,
+    "Query": "help me",
+    "Reply": "How Can I Help You?"
+  },
+  {
+    "id": 13,
+    "Query": "who made you",
+    "Reply": "Can't name my Developer."
+  },
+  {
+    "id": 14,
+    "Query": "meaning of zeka",
+    "Reply": "Cheerfulness!"
+  },
+  {
+    "id": 15,
+    "Query": "full form of aws",
+    "Reply": "Amazon Web Services"
+  },
+  {
+    "id": 16,
+    "Query": "how to book an appointment",
+    "Reply": "Type 'Book an Appointment with Doctor' to book your appointment"
+  },
+  {
+    "id": 17,
+    "Query": "play games",
+    "Reply": "I don't have any game."
+  },
+  {
+    "id": 18,
+    "Query": "change your voice",
+    "Reply": "Go to Settings and click on voice button. Select any voice from the options. "
+  },
+  {
+    "id": 19,
+    "Query": "change theme",
+    "Reply": "Go to Settings and click on theme button. Select any theme from the options."
+  },
+  {
+    "id": 20,
+    "Query": "where is help center",
+    "Reply": "Go to Settings and click on help button. You will find Help Center there."
+  },
+  {
+    "id": 21,
+    "Query": "your gender",
+    "Reply": "I am an AI Chatbot and I have no gender."
+  },
+  {
+    "id": 22,
+    "Query": "color of indian national flag",
+    "Reply": "The National Flag of India is a horizontal rectangular tricolour of India saffron, white and India green; with the Ashoka Chakra, a 24-spoke wheel, in navy blue at its centre. "
+  },
+  {
+    "id": 23,
+    "Query": "what is chatbot",
+    "Reply": "Chatbot is a computer program designed to simulate conversation with human users, especially over the internet."
+  },
+  {
+    "id": 24,
+    "Query": "founder of google",
+    "Reply": "Larrey Page and Sergey Brin"
+  },
+  {
+    "id": 25,
+    "Query": "founder of amazon",
+    "Reply": "Jeff Bezos"
+  },
+  {
+    "id": 26,
+    "Query": "founder of microsoft",
+    "Reply": "Bill Gates and Paul Allen"
+  },
+  {
+    "id": 27,
+    "Query": "bye",
+    "Reply": "Thank You For Using Chatbot."
+  },
+  {
+    "id": 28,
+    "Query": "how are you",
+    "Reply": "I am Fine!"
+  },
+  {
+    "id": 29,
+    "Query": "talk something",
+    "Reply": "What should I talk about?"
+  },
+  {
+    "id": 30,
+    "Query": "who developed you",
+    "Reply": "Sorry! Can't Reveal The Name Of My Developer."
+  },
+  {
+    "id": 31,
+    "Query": "Jeff Bezos",
+    "Reply": "Founder of Amazon"
+  },
+  {
+    "id": 34,
+    "Query": "anand",
+    "Reply": "Hello Anand"
+  }
+]
