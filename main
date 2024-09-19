@@ -1,0 +1,707 @@
+playSound("sound://category_background/synthesize.mp3", true);
+setScreen("WelcomeScreen");
+var hospital = ["Sunrise Hospital", "Mankind Hospital", "Apollo Hospital", "Unity Hospital","Moon Hospital","Bright Hospital","7Day Hospital","Jyoti Hospital"];
+var doctor = ["Dr. Batra", "Dr. Patil", "Dr. Mehra", "Dr. Patel", "Dr. Desai", "Dr. Gupta", "Dr. Nair", "Dr. Mehta","Dr. Sharma"];
+onEvent("Feed", "click", function( ) {
+  var get = getText("Query");
+  var text = get.toLowerCase();
+  createRecord("Queries", {Query:text,Reply:(getText("Reply"))}, function(record) {
+    
+  });
+  setProperty("Query", "text", "");
+  setProperty("Reply", "text", "");
+});
+setTimeout(function() {
+  showElement("welcome");
+}, 1500);
+setTimeout(function() {
+  setScreen("PostWelcomeScreen");
+}, 3500);
+onEvent("MicButton", "click", function( ) {
+	setScreen("MainScreen");
+	playSpeech("Hello! I am Zeka. How may I help you?", voi, "English (UK)");
+	showElement("hello");
+	stopSound("sound://category_background/synthesize.mp3");
+	showElement("text_area37");
+});
+onEvent("miconb", "click", function( ) {
+  hideElement("miconb");
+  showElement("micoff");
+  stopSound();
+  setTimeout(function() {
+    hideElement("micoff");
+    showElement("miconb");
+  }, 2000);
+});
+onEvent("VolumeUp", "click", function( ) {
+  setScreen("AppointmentLoginScreen");
+  stopSound();
+});
+onEvent("button1", "click", function( ) {
+  setScreen("PostWelcomeScreen");
+  setText("text_area7", "");
+  setText("text_area8", "");
+  hideElement("text_area7");
+  hideElement("text_area8");
+  setText("text_area2", "");
+  setText("text_area3", "");
+  hideElement("text_area2");
+  hideElement("text_area3");
+  setText("text_area4", "");
+  setText("text_area11", "");
+  hideElement("text_area4");
+  hideElement("text_area11");
+  hideElement("DateTextBox");
+  hideElement("TimeTextBox");
+  showElement("SoundAtPost");
+  hideElement("MuteAtPost");
+  stopSound();
+  playSound("sound://category_background/synthesize.mp3", false);
+});
+onEvent("send", "click", function( ) {
+  readRecords("Queries", {}, function(records) {
+    for (var i =0; i < records.length; i++) {
+      var xyz = (getText("text_input1"));
+      var abc = xyz.toLowerCase();
+      if (abc.includes(records[i].Query)) {
+        if (getText("text_area8") == "") {
+          hideElement("text_area37");
+          hideElement("hello");
+          setText("text_area7", getText("text_input1"));
+          showElement("text_area7");
+          setText("text_area8", records[i].Reply);
+          showElement("textimg");
+          setTimeout(function() {
+            playSpeech(getText("text_area8"), voi, "English (UK)");
+            showElement("text_area8");
+            hideElement("textimg");
+          }, 1500);
+        } else if ((getText("text_area2") == "" && getText("text_area8") != "")) {
+          setText("text_area2", getText("text_input1"));
+          hideElement("text_area37");
+          showElement("text_area2");
+          setText("text_area3", records[i].Reply);
+          showElement("textimg");
+          setTimeout(function() {
+            showElement("text_area3");
+            playSpeech(getText("text_area3"), voi, "English (UK)");
+            hideElement("textimg");
+          }, 1500);
+        } else if ((getText("text_area4") == "" && getText("text_area3") != "")) {
+          setText("text_area4", getText("text_input1"));
+          showElement("text_area4");
+          hideElement("text_area37");
+          setText("text_area11", records[i].Reply);
+          showElement("textimg");
+          setTimeout(function() {
+            showElement("text_area11");
+            playSpeech(getText("text_area11"), voi, "English (UK)");
+            hideElement("textimg");
+          }, 1500);
+        } else if ((getText("text_area11") != "")) {
+          setText("text_area2", "");
+          hideElement("text_area37");
+          setText("text_area3", "");
+          setText("text_area4", "");
+          setText("text_area11", "");
+          hideElement("text_area2");
+          hideElement("text_area3");
+          hideElement("text_area4");
+          hideElement("text_area11");
+          hideElement("text_area8");
+          setText("text_area7", getText("text_input1"));
+          setText("text_area8", records[i].Reply);
+          showElement("textimg");
+          setText("text_input1", "");
+          setTimeout(function() {
+            playSpeech(getText("text_area8"), voi, "English (UK)");
+            showElement("text_area8");
+            hideElement("textimg");
+          }, 1500);
+        }
+        setText("text_input1", "");
+      } else if ((abc.includes("open youtube"))) {
+        if (getText("text_area8") == "") {
+          hideElement("hello");
+          hideElement("text_area37");
+          setText("text_area7", getText("text_input1"));
+          showElement("text_area7");
+          setText("text_area8", "Opening Youtube...");
+          setTimeout(function() {
+            showElement("text_area8");
+            playSpeech(getText("text_area8"), voi, "English (UK)");
+            open("https://youtube.com");
+          }, 1500);
+        } else if ((getText("text_area2") == "" && getText("text_area8") != "")) {
+          setText("text_area2", getText("text_input1"));
+          hideElement("text_area37");
+          showElement("text_area2");
+          setText("text_area3", "Opening Youtube...");
+          setTimeout(function() {
+            showElement("text_area3");
+            playSpeech(getText("text_area3"), voi, "English (UK)");
+            open("https://youtube.com");
+          }, 1500);
+        } else if ((getText("text_area4") == "" && getText("text_area3") != "")) {
+          setText("text_area4", getText("text_input1"));
+          hideElement("text_area37");
+          showElement("text_area4");
+          setText("text_area11", "Opening Youtube...");
+          setTimeout(function() {
+            showElement("text_area11");
+            playSpeech(getText("text_area11"), voi, "English (UK)");
+            open("https://youtube.com");
+          }, 1500);
+        } else if ((getText("text_area11") != "")) {
+          setText("text_area2", "");
+          hideElement("text_area37");
+          setText("text_area3", "");
+          setText("text_area4", "");
+          setText("text_area11", "");
+          hideElement("text_area2");
+          hideElement("text_area3");
+          hideElement("text_area8");
+          hideElement("text_area4");
+          hideElement("text_area11");
+          setText("text_area7", getText("text_input1"));
+          setText("text_area8", "Opening Youtube...");
+          setTimeout(function() {
+            playSpeech(getText("text_area8"), voi, "English (UK)");
+            open("https://youtube.com");
+            showElement("text_area8");
+          }, 1500);
+        }
+        setText("text_input1", "");
+        } else if ((abc == "book an appointment with doctor") || abc == "1") {
+        setText("text_input1", "");
+        setTimeout(function() {
+          setScreen("AppointmentLoginScreen");
+        }, 1500);
+      } else if ((abc == "check appointment") || abc == "2") {
+        setText("text_input1", "");
+        setTimeout(function() {
+          setScreen("AppointmentCheck");
+        }, 1500);
+      } else if ((abc.includes("open wikipedia"))) {
+        open("https://wikipedia.org");
+        setText("text_input1", "");
+      } else if ((abc == "current date and time") || abc=="3") {
+        var currentDate = new Date();
+        var currentMonth = currentDate.getMonth() + 1;
+        var currentDay = currentDate.getDate();
+        var currentYear = currentDate.getFullYear();
+        var formattedDate = currentDay + "-" + currentMonth + "-" + currentYear;
+        var hour = currentDate.getHours();
+        var minute = currentDate.getMinutes();
+        var second = currentDate.getSeconds();
+        var formattedTime = hour + ":" + minute + ":" + second;
+        setText("DateTextBox", formattedDate);
+        showElement("DateTextBox");
+        setText("TimeTextBox", formattedTime);
+        showElement("TimeTextBox");
+        setText("text_input1", "");
+      } else if (abc == "play music") {
+        playSound("sound://category_background/progression.mp3", false);
+        setText("text_input1", "");
+      } else if (abc == "stop music") {
+        stopSound();
+        setText("text_input1", "");
+      }
+      }
+  });
+});
+onEvent("chatbotbut", "click", function( ) {
+  setScreen("about2Screen");
+});
+onEvent("BackatAb", "click", function( ) {
+  setScreen("SettingsScreen");
+});
+onEvent("aboutbut", "click", function( ) {
+  setScreen("AboutScreen");
+});
+onEvent("button2", "click", function( ) {
+  setScreen("SettingsScreen");
+});
+onEvent("button5", "click", function( ) {
+  setScreen("PostWelcomeScreen");
+});
+onEvent("theme", "click", function( ) {
+  setScreen("ThemeScreen");
+});
+onEvent("backbt2", "click", function( ) {
+  setScreen("MainScreen");
+});
+onEvent("BackAtTheme", "click", function( ) {
+  setScreen("SettingsScreen");
+});
+onEvent("dark", "click", function( ) {
+  setChecked("dark", true);
+  setProperty("AboutScreen", "image", "bg2-dk.png");
+  setProperty("MainScreen", "image", "image123.jpg");
+  setProperty("PostWelcomeScreen", "image", "image213.png");
+  setProperty("SettingsScreen", "image", "settingbg2.png");
+  setProperty("ThemeScreen", "image", "help-bg-dk2.png");
+  setProperty("about2Screen", "image", "bg2-dk.png");
+  setProperty("miconb", "icon-color", "white");
+  setProperty("micoff", "icon-color", "white");
+  setProperty("VolumeUp", "icon-color", "white");
+  setProperty("VoiceScreen", "image", "help-bg-dk2.png");
+  setProperty("BackatHelp", "icon-color", "white");
+  setProperty("button5", "icon-color", "white");
+  setProperty("HelpScreen", "image", "help-bg-dk.png");
+  setProperty("BackatVoice", "icon-color", "white");
+  setProperty("BackAtTheme", "icon-color", "white");
+  setProperty("backbt2", "icon-color", "white");
+  setProperty("BackatAb", "icon-color", "white");
+  setProperty("InfoScreen", "image", "bg1-dk.png");
+  setProperty("button3", "icon-color", "white");
+  setProperty("HelpCenterScreen", "image", "bg3-dk.png");
+  setProperty("button4", "icon-color", "white");
+  setProperty("BackAtFeed", "icon-color", "white");
+  setProperty("FeedScreen", "image", "bg5-dk.png");
+  setProperty("button9", "icon-color", "white");
+  setProperty("AppointmentLoginScreen", "image", "bg-6.png");
+  setProperty("Googlesearchscreen", "background-color", rgb(0,0,0,0.7));
+  setProperty("Backatgoogle", "icon-color", "white");
+  setProperty("SearchButton", "icon-color", "white");
+  setProperty("button12", "icon-color", "white");
+  setProperty("appointmentmain", "image", "bg-7-dk.png");
+  setProperty("AppointmentCheck", "image", "bg-6.png");
+  setProperty("button10", "icon-color", "white");
+  setProperty("button8", "icon-color", "white");
+  setProperty("DescriptionScreen", "image", "help-bg-dk2.png");
+  setProperty("MuteAtPost", "icon-color", "white");
+  setProperty("SoundAtPost", "icon-color", "white");
+  setProperty("BackatSound", "icon-color", "white");
+  setProperty("SoundScreen", "image", "bgsound-dk.png");
+});
+onEvent("light", "click", function( ) {
+  setChecked("light", true);
+  setProperty("AboutScreen", "image", "bg2.jpg");
+  setProperty("MainScreen", "image", "image12.jpg");
+  setProperty("PostWelcomeScreen", "image", "image21.png");
+  setProperty("SettingsScreen", "image", "settingbg1.png");
+  setProperty("ThemeScreen", "image", "help-bg2.png");
+  setProperty("about2Screen", "image", "bg2.jpg");
+  setProperty("VolumeUp", "icon-color", "#000000");
+  setProperty("micoff", "icon-color", "#000000");
+  setProperty("miconb", "icon-color", "#000000");
+  setProperty("VoiceScreen", "image", "help-bg2.png");
+  setProperty("BackatHelp", "icon-color", "#000000");
+  setProperty("button5", "icon-color", "#000000");
+  setProperty("HelpScreen", "image", "help-bg.png");
+  setProperty("BackatVoice", "icon-color", "#000000");
+  setProperty("BackAtTheme", "icon-color", "#000000");
+  setProperty("backbt2", "icon-color", "#000000");
+  setProperty("BackatAb", "icon-color", "#000000");
+  setProperty("InfoScreen", "image", "bg1.jpg");
+  setProperty("button3", "icon-color", "#000000");
+  setProperty("HelpCenterScreen", "image", "bg3.jpg");
+  setProperty("button4", "icon-color", "#000000");
+  setProperty("BackAtFeed", "icon-color", "#000000");
+  setProperty("FeedScreen", "image", "bg5.png");
+  setProperty("AppointmentLoginScreen", "image", "bg-6-2.png");
+  setProperty("button9", "icon-color", "#000000");
+  setProperty("Backatgoogle", "icon-color", "#000000");
+  setProperty("Googlesearchscreen", "background-color", "white");
+  setProperty("SearchButton", "icon-color", "#000000");
+  setProperty("button12", "icon-color", "#000000");
+  setProperty("appointmentmain", "image", "bg-7.png");
+  setProperty("AppointmentCheck", "image", "bg-6-2.png");
+  setProperty("button10", "icon-color", "#000000");
+  setProperty("button8", "icon-color", "#000000");
+  setProperty("DescriptionScreen", "image", "help-bg2.png");
+  setProperty("MuteAtPost", "icon-color", "#000000");
+  setProperty("SoundAtPost", "icon-color", "#000000");
+  setProperty("BackatSound", "icon-color", "#000000");
+  setProperty("SoundScreen", "image", "bgsound.png");
+});
+onEvent("voice", "click", function( ) {
+  setScreen("VoiceScreen");
+});
+onEvent("Male", "click", function( ) {
+  setChecked("Male", true);
+  playSpeech("Voice changed to male!", "male", "English (UK)");
+  voi = "male";
+});
+onEvent("Female", "click", function( ) {
+  setChecked("Female", true);
+  playSpeech("Voice changed to female!", "female", "English (UK)");
+  voi = "female";
+});
+onEvent("BackatVoice", "click", function( ) {
+  setScreen("SettingsScreen");
+});
+var voi = "female";
+onEvent("Helpbutton", "click", function( ) {
+  setScreen("HelpScreen");
+});
+onEvent("BackatHelp", "click", function( ) {
+  setScreen("SettingsScreen");
+});
+onEvent("info", "click", function( ) {
+  setScreen("InfoScreen");
+});
+onEvent("button3", "click", function( ) {
+  setScreen("HelpScreen");
+});
+onEvent("button4", "click", function( ) {
+  setScreen("HelpScreen");
+});
+onEvent("HelpCenter", "click", function( ) {
+  setScreen("HelpCenterScreen");
+});
+onEvent("button6", "click", function( ) {
+  showElement("button7");
+  hideElement("button6");
+  showElement("helptext2");
+  hideElement("helptext");
+});
+onEvent("button7", "click", function( ) {
+  showElement("button6");
+  hideElement("button7");
+  showElement("helptext");
+  hideElement("helptext2");
+});
+onEvent("Helpicon", "mouseover", function( ) {
+  showElement("helpcentertext");
+});
+onEvent("helpcentertext", "mouseout", function( ) {
+  hideElement("helpcentertext");
+});
+onEvent("feedbutton", "click", function( ) {
+	setScreen("FeedScreen");
+});
+onEvent("BackAtFeed", "click", function( ) {
+  setScreen("HelpScreen");
+});
+onEvent("button9", "click", function( ) {
+  setScreen("MainScreen");
+  setProperty("text_input2", "text", "");
+  setProperty("text_input3", "text", "");
+});
+onEvent("SearchButton", "mouseover", function( ) {
+  showElement("infoatmain");
+});
+onEvent("SearchButton", "mouseout", function( ) {
+  hideElement("infoatmain");
+});
+onEvent("SearchButton", "click", function( ) {
+  setScreen("Googlesearchscreen");
+});
+onEvent("Nextbutton", "click", function( ) {
+  setScreen("appointmentmain");
+});
+onEvent("Searchatgoogle", "click", function( ) {
+  var google = getText("text_input4");
+  var output = "https://www.google.com/search?q="+google;
+  open(output);
+});
+onEvent("Backatgoogle", "click", function( ) {
+  setScreen("MainScreen");
+});
+onEvent("button12", "click", function( ) {
+  setScreen("AppointmentLoginScreen");
+  showElement("dropdown4");
+  showElement("dropdown2");
+  showElement("Daysdropdown");
+  hideElement("finalcall");
+  hideElement("TimeText");
+  hideElement("NameText");
+  hideElement("MonthText");
+  hideElement("PhoneText");
+  hideElement("DateText");
+  hideElement("text_area13");
+  hideElement("text_area16");
+  hideElement("text_area18");
+  hideElement("text_area19");
+  hideElement("text_area20");
+  showElement("Bookappointment");
+  showElement("text_area17");
+  setProperty("text_input2", "text", "");
+  setProperty("text_input3", "text", "");
+  setProperty("IdText", "text", "");
+  setProperty("Daysdropdown", "index", 0);
+  setProperty("dropdown2", "index", 0);
+  setProperty("dropdown4", "index", 0);
+  hideElement("IdText");
+  hideElement("text_area22");
+  hideElement("DoctorNameText");
+  hideElement("DoctorTextoutput");
+  hideElement("HospitalNametext");
+  hideElement("HostitaltextOutput");
+});
+onEvent("Bookappointment", "click", function( ) {
+  var randomdoctornumber = randomNumber(0, (doctor.length)-1);
+  var randomhospitalname = randomNumber(0, (hospital.length)-1);
+  var randomdoctor = doctor[randomdoctornumber];
+  var randomhospital = hospital[randomhospitalname];
+  var phone = getNumber("text_input3");
+  var patient = getText("text_input2");
+  var month = getText("Daysdropdown");
+  var date = getText("dropdown2");
+  var time = getText("dropdown4");
+  createRecord("Appointment", {Patient:patient,PhoneNo:phone,Month:month,AppointmentDate:date,Time:time,Doctor:randomdoctor,Hospital:randomhospital}, function(record) {
+    
+  });
+  playSpeech("Booking in Process.", voi, "English (UK)");
+  setText("NameText", patient);
+  setText("MonthText", month);
+  setText("PhoneText", phone);
+  setText("DateText", date);
+  setText("TimeText", time);
+  setText("DoctorTextoutput", randomdoctor);
+  setText("HostitaltextOutput", randomhospital);
+  readRecords("Appointment", {}, function(records) {
+    for (var q =0; q < records.length; q++) {
+      setText("IdText", records[q].id+1);
+    }
+  });
+  setTimeout(function() {
+    hideElement("dropdown4");
+    hideElement("dropdown2");
+    hideElement("Daysdropdown");
+    showElement("finalcall");
+    showElement("TimeText");
+    showElement("NameText");
+    showElement("MonthText");
+    showElement("PhoneText");
+    showElement("DateText");
+    showElement("text_area13");
+    showElement("text_area16");
+    showElement("text_area18");
+    showElement("text_area19");
+    showElement("text_area20");
+    playSpeech("Appointment Booked!", voi, "English (UK)");
+    hideElement("Bookappointment");
+    hideElement("text_area17");
+    showElement("IdText");
+    showElement("text_area22");
+    showElement("Nextatappmain");
+  }, 1750);
+});
+onEvent("button10", "click", function( ) {
+  setScreen("MainScreen");
+  setProperty("text_input6", "text", "");
+  showElement("text_input6");
+  showElement("Nextatcheck");
+  showElement("text_area24");
+  showElement("text_area23");
+  hideElement("text_area21");
+  hideElement("text_area25");
+  hideElement("text_area27");
+  hideElement("text_area28");
+  hideElement("text_area26");
+  hideElement("text_area29");
+  hideElement("text_area30");
+  hideElement("text_area31");
+  hideElement("text_area32");
+  hideElement("text_area33");
+  hideElement("text_area34");
+  hideElement("text_area35");
+  hideElement("text_area36");
+  hideElement("Nextatappcheck");
+  hideElement("Backatappcheck");
+  setText("text_area31", "");
+  setText("text_area32", "");
+  setText("text_area33", "");
+  setText("text_area34", "");
+  setText("text_area35", "");
+  setText("text_area36", "");
+});
+onEvent("Nextatcheck", "click", function( ) {
+  hideElement("text_input6");
+  hideElement("text_area24");
+  hideElement("text_area23");
+  hideElement("Nextatcheck");
+  playSpeech("Fetching Details!", voi, "English (UK)");
+  readRecords("Appointment", {}, function(records) {
+    for (var b =0; b < records.length; b++) {
+      if (getText("text_input6") == records[b].id) {
+        setText("text_area31", (records[b]).Patient);
+        setText("text_area32", (records[b]).PhoneNo);
+        setText("text_area33", (records[b]).AppointmentDate);
+        setText("text_area34", (records[b]).Month);
+        setText("text_area35", (records[b]).Time);
+        setText("text_area36", (records[b]).id);
+        setText("HospitalOutputatCheck", (records[b]).Hospital);
+        setText("DoctoroutputatCheck", (records[b]).Doctor);
+      }
+    }
+  });
+  setTimeout(function() {
+    showElement("Nextatappcheck");
+    showElement("text_area21");
+    showElement("text_area25");
+    showElement("text_area27");
+    showElement("text_area28");
+    showElement("text_area26");
+    showElement("text_area29");
+    showElement("text_area30");
+    showElement("text_area31");
+    showElement("text_area32");
+    showElement("text_area33");
+    showElement("text_area34");
+    showElement("text_area35");
+    showElement("text_area36");
+  }, 1750);
+});
+onEvent("DescriptionButton", "click", function( ) {
+  setScreen("DescriptionScreen");
+});
+onEvent("button8", "click", function( ) {
+  setScreen("HelpScreen");
+  hideElement("text_area41");
+  hideElement("button11");
+  hideElement("text_area40");
+  hideElement("button14");
+  showElement("text_area38");
+  showElement("text_area39");
+  showElement("button13");
+  hideElement("text_area43");
+  hideElement("text_area42");
+  hideElement("button16");
+});
+onEvent("button13", "click", function( ) {
+  showElement("text_area41");
+  showElement("button11");
+  showElement("text_area40");
+  showElement("button14");
+  hideElement("text_area38");
+  hideElement("text_area39");
+  hideElement("button13");
+});
+onEvent("button11", "click", function( ) {
+  hideElement("text_area41");
+  hideElement("button11");
+  hideElement("text_area40");
+  hideElement("button14");
+  showElement("text_area38");
+  showElement("text_area39");
+  showElement("button13");
+});
+onEvent("button14", "click", function( ) {
+  hideElement("text_area41");
+  hideElement("button11");
+  hideElement("text_area40");
+  hideElement("button14");
+  showElement("text_area43");
+  showElement("text_area42");
+  showElement("button16");
+});
+onEvent("button16", "click", function( ) {
+  showElement("text_area41");
+  showElement("button11");
+  showElement("text_area40");
+  showElement("button14");
+  hideElement("text_area43");
+  hideElement("text_area42");
+  hideElement("button16");
+});
+onEvent("SoundAtPost", "click", function( ) {
+  hideElement("SoundAtPost");
+  showElement("MuteAtPost");
+  stopSound("sound://category_background/synthesize.mp3");
+});
+onEvent("MuteAtPost", "click", function( ) {
+  showElement("SoundAtPost");
+  hideElement("MuteAtPost");
+  playSound("sound://category_background/synthesize.mp3", false);
+});
+onEvent("BackatSound", "click", function( ) {
+  setScreen("SettingsScreen");
+});
+onEvent("radio_button2", "click", function( ) {
+  setChecked("radio_button2", true);
+  stopSound("sound://category_background/synthesize.mp3");
+});
+onEvent("radio_button1", "click", function( ) {
+  setChecked("radio_button1", true);
+  playSound("sound://category_background/synthesize.mp3", false);
+});
+onEvent("Soundbutton", "click", function( ) {
+  setScreen("SoundScreen");
+});
+onEvent("Nextatappmain", "click", function( ) {
+  showElement("backatAppmain");
+  hideElement("Nextatappmain");
+  hideElement("TimeText");
+  hideElement("NameText");
+  hideElement("MonthText");
+  hideElement("PhoneText");
+  hideElement("DateText");
+  hideElement("text_area13");
+  hideElement("text_area16");
+  hideElement("text_area18");
+  hideElement("text_area19");
+  hideElement("text_area20");
+  hideElement("IdText");
+  hideElement("text_area22");
+  showElement("DoctorTextoutput");
+  showElement("HostitaltextOutput");
+  showElement("HospitalNametext");
+  showElement("DoctorNameText");
+});
+onEvent("backatAppmain", "click", function( ) {
+  showElement("Nextatappmain");
+  hideElement("backatAppmain");
+  showElement("TimeText");
+  showElement("NameText");
+  showElement("MonthText");
+  showElement("PhoneText");
+  showElement("DateText");
+  showElement("text_area13");
+  showElement("text_area16");
+  showElement("text_area18");
+  showElement("text_area19");
+  showElement("text_area20");
+  showElement("IdText");
+  showElement("text_area22");
+  hideElement("DoctorTextoutput");
+  hideElement("HostitaltextOutput");
+  hideElement("HospitalNametext");
+  hideElement("DoctorNameText");
+});
+onEvent("Nextatappcheck", "click", function( ) {
+  showElement("Backatappcheck");
+  hideElement("Nextatappcheck");
+  hideElement("text_area21");
+  hideElement("text_area25");
+  hideElement("text_area27");
+  hideElement("text_area28");
+  hideElement("text_area26");
+  hideElement("text_area29");
+  hideElement("text_area30");
+  hideElement("text_area31");
+  hideElement("text_area32");
+  hideElement("text_area33");
+  hideElement("text_area34");
+  hideElement("text_area35");
+  hideElement("text_area36");
+  showElement("DoctorTextatcheck");
+  showElement("DoctoroutputatCheck");
+  showElement("HospitalTextatCheck");
+  showElement("text_area30");
+  showElement("HospitalOutputatCheck");
+});
+onEvent("Backatappcheck", "click", function( ) {
+  showElement("Nextatappcheck");
+  hideElement("Backatappcheck");
+  showElement("text_area21");
+  showElement("text_area25");
+  showElement("text_area27");
+  showElement("text_area28");
+  showElement("text_area26");
+  showElement("text_area29");
+  showElement("text_area30");
+  showElement("text_area31");
+  showElement("text_area32");
+  showElement("text_area33");
+  showElement("text_area34");
+  showElement("text_area35");
+  showElement("text_area36");
+  hideElement("DoctorTextatcheck");
+  hideElement("DoctoroutputatCheck");
+  hideElement("HospitalOutputatCheck");
+  hideElement("HospitalTextatCheck");
+});
